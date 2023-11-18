@@ -38,7 +38,7 @@ public class Ant : MonoBehaviour
 	Vector2 randomSteerForce;
 	Vector2 pheromoneSteerForce;
 
-	// State
+	// Pathing state
 	Vector2 currentForwardDir;
 	Vector2 currentPosition;
 	float colDst;
@@ -58,6 +58,9 @@ public class Ant : MonoBehaviour
 
 	float leftHomeTime;
 	float leftFoodTime;
+
+	// Mechanics state
+	int politicalAffiliation;	// range [-3, 3]
 
 	public void SetColony(AntColony colony)
 	{
