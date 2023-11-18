@@ -97,15 +97,27 @@ public class MainPlayerMovement : MonoBehaviour
             return speed;
         }
         
-        void HandlePheromonePlacement()
-        {
+    void HandlePheromonePlacement()
+    {
             float t = 1 - (Time.time - leftFollowingTime) / settings.pheromoneRunOutTime;
             t = Mathf.Lerp(0.5f, 1, t);
             colony.followMarkers.Add(transform.position, t);
             lastPheromonePos = transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * settings.dstBetweenMarkers * 0.2f;
             Debug.Log(lastPheromonePos );
-        }
-        }
+    }
+
+    // TODO:
+    // - Check for click
+    // - Add raycast from player to click location
+    // - Save ant 
+    /*Ray ray = Camera.main.ScreenPointToRay(clickPosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit));
+            {
+                agent.SetDestination(hit.point);
+            }*/
+}
 
 
 
