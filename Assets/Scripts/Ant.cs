@@ -16,6 +16,7 @@ public class Ant : MonoBehaviour
 	public Transform antennaLeft;
 	public Transform antennaRight;
 	public Transform perceptionCentre;
+	public Sprite[] spriteArray;
 
 	State currentState;
 
@@ -85,6 +86,9 @@ public class Ant : MonoBehaviour
 		colDst = settings.collisionRadius / 2f;
 		deathTime = Time.time + settings.lifetime + Random.Range(0, settings.lifetime / 2f);
 		leftHomeTime = Time.time;
+
+		this.politicalAffiliation = Random.Range(-3, 4);
+		this.setSprite();
 	}
 
 	void Update()
@@ -108,6 +112,12 @@ public class Ant : MonoBehaviour
 
 		HandleCollisionSteering();
 		HandleMovement();
+	}
+
+	void setSprite()
+	{
+		this.GetComponentInChildren<SpriteRenderer>().sprite = 
+			spriteArray[this.politicalAffiliation + 3];
 	}
 
 
