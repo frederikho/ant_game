@@ -27,6 +27,13 @@ public class UI : MonoBehaviour
     public Button button2;
     public Button button3;
 
+    [Header("Other")]
+
+    public AudioSource audioSource;
+    public AudioClip antMeetingSoundclip1;
+    public AudioClip antMeetingSoundclip2;
+
+
     public string[] pro_queen_greeting = {
         "Antmazing morning, isn't it? Praised be the queen",
         "Antonitte's reign continues, buzzing as usual.",
@@ -125,6 +132,7 @@ public class UI : MonoBehaviour
     {
         // Disable the canvas at the start
         canvas.enabled = false;
+        audioSource = GetComponent<AudioSource>();
 
         // Load greeting texts from CSV file
         LoadGreetingTexts();
@@ -143,6 +151,8 @@ public class UI : MonoBehaviour
         // Check for the 'm' key press
         if (Input.GetKeyDown(KeyCode.M))
         {
+            
+
             // Toggle the canvas
             canvas.enabled = !canvas.enabled;
             revolutionCanvas.enabled = !revolutionCanvas.enabled;
@@ -150,6 +160,12 @@ public class UI : MonoBehaviour
             // If the canvas is enabled, update the random text for Ant-Text
             if (canvas.enabled)
             {
+
+                // Play random soundclip
+                int randomIndex = Random.Range(0, 2);
+                AudioClip selectedClip = (randomIndex == 0) ? antMeetingSoundclip1 : antMeetingSoundclip2;
+                audioSource.clip = selectedClip;
+                audioSource.Play();
                 SetRandomGreeting();
 
                 // Choose a random reply for each Response Window
@@ -159,7 +175,24 @@ public class UI : MonoBehaviour
                 SetRandomReply(responseWindow2Text);
                 SetRandomReply(responseWindow3Text);
             }
+
+
         }
+    }
+    
+    private void PlayRandomSoundClip()
+    {
+        // // Generate a random number (0 or 1)
+        // int randomIndex = Random.Range(0, 2);
+
+        // // Choose the sound clip based on the random number
+        // AudioClip selectedClip = (randomIndex == 0) ? antMeetingSoundclip1 : antMeetingSoundclip2;
+
+        // // Assign the selected clip to the AudioSource
+        // audioSource.clip = selectedClip;
+
+        // // Play the selected sound clip
+        // audioSource.Play();
     }
 
     private void SetRandomGreeting()

@@ -12164,6 +12164,7 @@ GameObject:
   - component: {fileID: 1439380336}
   - component: {fileID: 1439380335}
   - component: {fileID: 1439380339}
+  - component: {fileID: 1439380340}
   m_Layer: 5
   m_Name: Dialogue Canvas
   m_TagString: Untagged
@@ -12272,11 +12273,6 @@ MonoBehaviour:
   canvas: {fileID: 1439380337}
   revolutionCanvas: {fileID: 1290122943}
   textMeshPro: {fileID: 1383171015}
-  greetingTexts:
-  - Hello!
-  - Greetings!
-  - Hi there!
-  - Welcome!
   replyTexts:
   - That sounds interesting.
   - Tell me more!
@@ -12289,6 +12285,192 @@ MonoBehaviour:
   button1: {fileID: 1891591319}
   button2: {fileID: 889017242}
   button3: {fileID: 1636876455}
+  audioSource: {fileID: 0}
+  antMeetingSoundclip1: {fileID: 8300000, guid: 76548fba778749b54b7c6f554ff8c13c,
+    type: 3}
+  antMeetingSoundclip2: {fileID: 8300000, guid: d8936aaae6bb9025cbd1121b30745669,
+    type: 3}
+  pro_queen_greeting:
+  - Antmazing morning, isn't it? Praised be the queen
+  - Antonitte's reign continues, buzzing as usual.
+  - United, we achieve greatness for our queen.
+  - Let's create harmony under her majesties rule.
+  - Each ant's role is vital in the queen's plan.
+  - A new day for the hierarchy. Let's embrace it with ant-icipation!
+  - Queen Antonitte's wisdom is unmatched!
+  - The queen's reign keeps us safe from ant-archists!
+  - Salutations! Are you looking forward to serving our great queen?
+  - The queen's watchful antennae sees all!
+  - This work is hard, but worth it for the queen!
+  - Queen Antonitte's guides us all!
+  neutral_greeting:
+  - Greetings, fellow worker.
+  - Praise the hive, as always.
+  - Yello!
+  - Good day there, young ant-repreneur.
+  - F-ants-y seeing you here!
+  - Fancy seeing you here!
+  - Praised be the hive and our antmunity!
+  - Hi there!
+  - Hello there friend.
+  - Another day, another ant-venture!
+  - Greetings fellow antizen.
+  - Ants united, bound by our common purpose.
+  - Salutations!
+  contra_queen_greeting:
+  - I've worked in the blood mines for 48 hours!
+  - I see you are oppressed by the queen as well?
+  - What an awful day to serve a hierarchy, isn't it?
+  - Heard you don't like the queen?
+  - Greetings, shackled under the queen's whims.
+  - Another day under the queen's oppressive rule.
+  - In the grip of Queen Antonitte's power.
+  - Under the queen's rule, a heavy greeting.
+  - How come the queen gets to eat more than every worker united?
+  - Why is the queen so insatiable?
+  - This job sucks.
+  - I would literally prefer to do anything else right now.
+  - Make this work stop, please.
+  contra_queen_reply:
+  - Join our revolution where every ant brings their own flavour to the table!
+  - Aren't you tired of the queen's incompetents? Join our revolution!
+  - In our revolution, worker ants choose their own system!
+  - Revolutionize your work health! Daily laughter sessions and a strict 'no overtime'
+    policy.
+  - The queen shall no longer ruin our work life. We will take it into our own hands!
+  - Join the job-choice revolution and pursue your passion!
+  - Are you fed up with the queen taking most food for herself?
+  - Demand a revolution for equal opportunities, work and food!
+  - Queen Antoniette's demands to much from her workers. Join our revolution!
+  - Join our revolution for a better workplace! We don't want to serve a insatiable
+    leader!
+  - The queen is more concerned with herself, than her workers!
+  - Our revolution promotes purposful jobs. Not just mindless labor.
+  - Revolutionize hive wellness. A new leadership couldn't hurt, could it?
+  - Spice up the anthill! Join our revolution for a better workplace experience!
+  - New queen, new era. Join us in the revolution for a brighter ant future!
+  - Join the revolution for job-choice fulfillment!
+  - Queen Antoniette is no longer a fit leader. We need a new one.
+  - 'Join our revolution to overthrow queen Antoniette! '
+  - We want meaningful work in this anthill. Join our revolution!
+  - Queen Antoniette eats more food than all workers combined!
+  pro_queen_reply:
+  - Nevermind. You are right.
+  - Hmm. Maybe I should leave it be.
+  - You convinced me. Blessed be the queen. For now.
+  - Fair enough. I won't press the issue anymore.
+  - Alright, fine. I guess you have a point.
+  - I'll be on my way then.
+  - You win. I'll let it go. Praised be the Queen I suppose.
+  - Hmm, you've made your case. I'll give in this time.
+  - You've convinced me. Let's just keep things as they are.
+  - Doesn't sound like you'd be interested in my cause.
+  - I'll leave it be then. Priased be the Queen then.
+  - We'll just talk some other time.
+  - Hmm. Got it. Goodbye.
+  - I'll back off.
+  - 'Let''s agree to disagree then. '
+  - 'Let''s talk later instead. '
+  - We are wasting each others time. Goodbye.
+  - 'You might be a lost cause. '
+  - Sorry I gotta go.
+  - I don't have time for this.
+--- !u!82 &1439380340
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439380334}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 76548fba778749b54b7c6f554ff8c13c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1566248002
 GameObject:
   m_ObjectHideFlags: 0
