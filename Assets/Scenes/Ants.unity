@@ -11338,7 +11338,7 @@ MonoBehaviour:
   foodPrefab: {fileID: 9180137372315387714, guid: 7a2b538a14f82481b8937ccc9e8ec743,
     type: 3}
   timeBetweenSpawns: 0.5
-  amount: 5
+  amount: 50
   maintainAmount: 1
   blobCount: 4
   seed: 42
@@ -11350,7 +11350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212810502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.38, y: -4.31, z: 0}
+  m_LocalPosition: {x: 0.87, y: -8.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12763,7 +12763,7 @@ MonoBehaviour:
   foodPrefab: {fileID: 9180137372315387714, guid: 7a2b538a14f82481b8937ccc9e8ec743,
     type: 3}
   timeBetweenSpawns: 0.5
-  amount: 700
+  amount: 500
   maintainAmount: 1
   blobCount: 4
   seed: 115
@@ -13275,7 +13275,7 @@ MonoBehaviour:
   foodPrefab: {fileID: 9180137372315387714, guid: 7a2b538a14f82481b8937ccc9e8ec743,
     type: 3}
   timeBetweenSpawns: 0.5
-  amount: 500
+  amount: 300
   maintainAmount: 1
   blobCount: 3
   seed: 0
