@@ -5417,7 +5417,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16.8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5442,7 +5442,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5607,6 +5607,7 @@ MonoBehaviour:
   replenishDead: 1
   homeMarkers: {fileID: 1838622586}
   foodMarkers: {fileID: 1339278236}
+  followMarkers: {fileID: 0}
   radius: 2
   graphic: {fileID: 1602077971}
   numFoodCollected: 0
@@ -12272,11 +12273,6 @@ MonoBehaviour:
   canvas: {fileID: 1439380337}
   revolutionCanvas: {fileID: 1290122943}
   textMeshPro: {fileID: 1383171015}
-  greetingTexts:
-  - Hello!
-  - Greetings!
-  - Hi there!
-  - Welcome!
   replyTexts:
   - That sounds interesting.
   - Tell me more!
@@ -12289,6 +12285,160 @@ MonoBehaviour:
   button1: {fileID: 1891591319}
   button2: {fileID: 889017242}
   button3: {fileID: 1636876455}
+  pro_queen_greeting:
+  - Antmazing morning, isn't it? Praised be the queen
+  - Antonitte's reign continues, buzzing as usual.
+  - United, we achieve greatness for our queen.
+  - Let's create harmony under her majesties rule.
+  - Each ant's role is vital in the queen's plan.
+  - A new day for the hierarchy. Let's embrace it with ant-icipation!
+  - Queen Antonitte's wisdom is unmatched!
+  - The queen's reign keeps us safe from ant-archists!
+  - Salutations! Are you looking forward to serving our great queen?
+  - The queen's watchful antennae sees all!
+  - This work is hard, but worth it for the queen!
+  - Queen Antonitte's guides us all!
+  neutral_greeting:
+  - Greetings, fellow worker.
+  - Praise the hive, as always.
+  - Yello!
+  - Good day there, young ant-repreneur.
+  - F-ants-y seeing you here!
+  - Fancy seeing you here!
+  - Praised be the hive and our antmunity!
+  - Hi there!
+  - Hello there friend.
+  - Another day, another ant-venture!
+  - Greetings fellow antizen.
+  - Ants united, bound by our common purpose.
+  - Salutations!
+  contra_queen_greeting:
+  - I've worked in the blood mines for 48 hours!
+  - I see you are oppressed by the queen as well?
+  - What an awful day to serve a hierarchy, isn't it?
+  - Heard you don't like the queen?
+  - Greetings, shackled under the queen's whims.
+  - Another day under the queen's oppressive rule.
+  - In the grip of Queen Antonitte's power.
+  - Under the queen's rule, a heavy greeting.
+  - How come the queen gets to eat more than every worker united?
+  - Why is the queen so insatiable?
+  - This job sucks.
+  - I would literally prefer to do anything else right now.
+  - Make this work stop, please.
+  contra_queen_reply:
+  - Join our revolution where every ant brings their own flavour to the table!
+  - Aren't you tired of the queen's incompetents? Join our revolution!
+  - In our revolution, worker ants choose their own system!
+  - Revolutionize your work health! Daily laughter sessions and a strict 'no overtime'
+    policy.
+  - The queen shall no longer ruin our work life. We will take it into our own hands!
+  - Join the job-choice revolution and pursue your passion!
+  - Are you fed up with the queen taking most food for herself?
+  - Demand a revolution for equal opportunities, work and food!
+  - Queen Antoniette's demands to much from her workers. Join our revolution!
+  - Join our revolution for a better workplace! We don't want to serve a insatiable
+    leader!
+  - The queen is more concerned with herself, than her workers!
+  - Our revolution promotes purposful jobs. Not just mindless labor.
+  - Revolutionize hive wellness. A new leadership couldn't hurt, could it?
+  - Spice up the anthill! Join our revolution for a better workplace experience!
+  - New queen, new era. Join us in the revolution for a brighter ant future!
+  - Join the revolution for job-choice fulfillment!
+  - Queen Antoniette is no longer a fit leader. We need a new one.
+  - 'Join our revolution to overthrow queen Antoniette! '
+  - We want meaningful work in this anthill. Join our revolution!
+  - Queen Antoniette eats more food than all workers combined!
+  pro_queen_reply:
+  - Nevermind. You are right.
+  - Hmm. Maybe I should leave it be.
+  - You convinced me. Blessed be the queen. For now.
+  - Fair enough. I won't press the issue anymore.
+  - Alright, fine. I guess you have a point.
+  - I'll be on my way then.
+  - You win. I'll let it go. Praised be the Queen I suppose.
+  - Hmm, you've made your case. I'll give in this time.
+  - You've convinced me. Let's just keep things as they are.
+  - Doesn't sound like you'd be interested in my cause.
+  - I'll leave it be then. Priased be the Queen then.
+  - We'll just talk some other time.
+  - Hmm. Got it. Goodbye.
+  - I'll back off.
+  - 'Let''s agree to disagree then. '
+  - 'Let''s talk later instead. '
+  - We are wasting each others time. Goodbye.
+  - 'You might be a lost cause. '
+  - Sorry I gotta go.
+  - I don't have time for this.
+--- !u!1001 &1467327687
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2220735779239738964, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerAnt
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220735779239738970, guid: 4a057d347a5f94a12bfea75b07a4f07c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a057d347a5f94a12bfea75b07a4f07c, type: 3}
 --- !u!1 &1566248002
 GameObject:
   m_ObjectHideFlags: 0
