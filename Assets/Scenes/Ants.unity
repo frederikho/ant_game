@@ -4882,7 +4882,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4ae50dc4904a44898a5167f2cbf44ce8, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5126,7 +5125,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: eff18608398fc493e9b42e82afe5ae97, type: 2}
   antPrefab: {fileID: 402160823636076130, guid: 6521f716eb1dd42a3b8f86938e1183fa,
     type: 3}
-  numToSpawn: 500
+  numToSpawn: 50
   antHolder: {fileID: 1127930924}
   replenishDead: 1
   homeMarkers: {fileID: 1838622586}
@@ -10099,7 +10098,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4ae50dc4904a44898a5167f2cbf44ce8, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10326,8 +10324,8 @@ MonoBehaviour:
   foodPrefab: {fileID: 9180137372315387714, guid: 7a2b538a14f82481b8937ccc9e8ec743,
     type: 3}
   timeBetweenSpawns: 0.5
-  amount: 650
-  maintainAmount: 0
+  amount: 5
+  maintainAmount: 1
   blobCount: 4
   seed: 42
 --- !u!4 &1212810504
@@ -10338,7 +10336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212810502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.52, y: 12.31, z: 0}
+  m_LocalPosition: {x: 1.38, y: -4.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10617,7 +10615,7 @@ MonoBehaviour:
   borderIso: -4.07
   isoClamp: 0.1
   mapMaterial: {fileID: 2100000, guid: 5c436ec05891641498321fefa22f8cc4, type: 2}
-  smooth: 1
+  smooth: 0
   border: 1
   noiseScale: 3.23
   numLayers: 5
@@ -10626,7 +10624,7 @@ MonoBehaviour:
   noiseOffset: {x: 0, y: 0}
   seed: 0
   autoRefreshNoise: 0
-  useBrush: 1
+  useBrush: 0
   brushWorldRadius: 0.75
   brushMinMax: {x: 0.5, y: 1}
   brushStrength: 5
@@ -10684,7 +10682,7 @@ MonoBehaviour:
     type: 3}
   timeBetweenSpawns: 0.5
   amount: 700
-  maintainAmount: 0
+  maintainAmount: 1
   blobCount: 4
   seed: 115
 --- !u!4 &1694517056
@@ -10787,7 +10785,7 @@ MonoBehaviour:
     type: 3}
   timeBetweenSpawns: 0.5
   amount: 500
-  maintainAmount: 0
+  maintainAmount: 1
   blobCount: 3
   seed: 0
 --- !u!4 &2027155459
