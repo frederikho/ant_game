@@ -16,6 +16,7 @@ public class Ant : MonoBehaviour
 	public Transform antennaLeft;
 	public Transform antennaRight;
 	public Transform perceptionCentre;
+	public Sprite[] spriteArray;
 
 	State currentState;
 
@@ -59,8 +60,20 @@ public class Ant : MonoBehaviour
 	float leftHomeTime;
 	float leftFoodTime;
 
-	// Mechanics state
-	int politicalAffiliation;	// range [-3, 3]
+	// Mechanics state 
+	public event System.Action<Ant> politicalAffiliationChange;
+	public int politicalAffiliation;
+	public int PoliticalAffiliation{
+		get{return politicalAffiliation;}
+		set{
+			if (value != politicalAffiliation) {
+				politicalAffiliation = value;
+			}
+			politicalAffiliationChange?.Invoke(this);
+			
+		}
+	}
+
 
 	public void SetColony(AntColony colony)
 	{
@@ -85,6 +98,9 @@ public class Ant : MonoBehaviour
 		colDst = settings.collisionRadius / 2f;
 		deathTime = Time.time + settings.lifetime + Random.Range(0, settings.lifetime / 2f);
 		leftHomeTime = Time.time;
+
+		this.politicalAffiliation = Random.Range(-3, 4);
+		this.setSprite();
 	}
 
 	void Update()
@@ -108,6 +124,24 @@ public class Ant : MonoBehaviour
 
 		HandleCollisionSteering();
 		HandleMovement();
+	}
+
+	void setSprite()
+	{
+		this.GetComponentInChildren<SpriteRenderer>().sprite = 
+			spriteArray[politicalAffiliation + 3];		
+	}
+
+	void updatePoliticalAffiliation() {
+		if (politicalAffiliation < 0) {
+				tag = "red";
+		}
+		else if (politicalAffiliation > 0) {
+			tag = "blue";
+		}
+		else {
+			tag = "grey";
+		}
 	}
 
 

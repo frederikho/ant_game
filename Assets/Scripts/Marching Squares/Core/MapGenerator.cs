@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -68,11 +69,12 @@ public class MapGenerator : MonoBehaviour {
 	void Save () {
 		SaveData saveData = new SaveData (fullMap);
 		string saveString = JsonUtility.ToJson (saveData);
-		StreamWriter writer = new StreamWriter ("./Assets/SavedMap/Map.txt");
+		string fileName = $"Map-{DateTime.Now:yyyyMMdd-HHmmss}.txt";
+		StreamWriter writer = new StreamWriter ("./Assets/SavedMap/" + fileName + ".txt");
+		Debug.Log("Saved map " + fileName + "!");
 		writer.Write (saveString);
 		writer.Close ();
 	}
-
 	void Init () {
 
 		targetBrushRadius = brushWorldRadius;
@@ -114,6 +116,13 @@ public class MapGenerator : MonoBehaviour {
 			Generate ();
 			DrawChunks ();
 		}
+		
+		// Check for the 'm' key press
+		if (Input.GetKeyDown(KeyCode.S))
+        {
+			Save ();
+		}
+
 	}
 
 	void HandleBrush () {
