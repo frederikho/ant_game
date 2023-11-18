@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ant : MonoBehaviour
 {
-	public enum State { SearchingForFood, ReturningHome }
+	public enum State { SearchingForFood, ReturningHome, Following}
 
 	public AntSettings settings;
 	public Transform head;
@@ -323,6 +323,11 @@ public class Ant : MonoBehaviour
 					numPheromones = colony.foodMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
 				}
 				if (currentState == State.ReturningHome && settings.useHomeMarkers)
+				{
+					numPheromones = colony.homeMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
+				}
+
+				if (currentState == State.Following && settings.useFollowMarkers)
 				{
 					numPheromones = colony.homeMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
 				}

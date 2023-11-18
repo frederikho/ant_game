@@ -12,6 +12,7 @@ public class AntColony : MonoBehaviour {
 
 	public PerceptionMap homeMarkers;
 	public PerceptionMap foodMarkers;
+	public PerceptionMap followMarkers;
 	float nextPossibleRespawnTime;
 	public float radius;
 	public Transform graphic;
