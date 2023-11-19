@@ -11,7 +11,7 @@ public class MainPlayerMovement : MonoBehaviour
     [SerializeField ]private float speed = 10f;
     private Camera mainCamera;
     private Vector3 screenPosition;
-    private Vector3 clickPosition;
+    private Vector2 clickPosition;
     private Vector3 targetPosition;
     private Vector3 direction;
     public LayerMask collisionMask;
@@ -23,7 +23,11 @@ public class MainPlayerMovement : MonoBehaviour
     Vector2 lastPheromonePos;
     AntColony colony;
     float leftFollowingTime ;
+    GameObject targetAnt;
+    public CapsuleCollider2D playerTrigger; 
+    IEnumerator Coroutine;
 
+    public Canvas canvas;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -41,14 +45,21 @@ public class MainPlayerMovement : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
         
-        float distance = Vector3.Distance(transform.position, mousePosition);
-        float speed = CalculateSpeed(distance);
-        
-        RotateTowardsMouse(mousePosition);
-        MoveToPosition(mousePosition, speed);
-        UpdateCameraPosition();
-        // HandlePheromonePlacement();
-        
+        if (canvas.enabled) {
+            speed = 0;
+         } else {
+            float distance = Vector3.Distance(transform.position, mousePosition);
+            float speed = CalculateSpeed(distance);
+            
+            RotateTowardsMouse(mousePosition);
+            MoveToPosition(mousePosition, speed);
+            UpdateCameraPosition();
+            // HandlePheromonePlacement();
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+            setTargetAnt();
+        }
        
     }
 
@@ -107,16 +118,58 @@ public class MainPlayerMovement : MonoBehaviour
     }
 
     // TODO:
-    // - Check for click
-    // - Add raycast from player to click location
-    // - Save ant 
-    /*Ray ray = Camera.main.ScreenPointToRay(clickPosition);
-            RaycastHit hit;
+    // // - Check for click
+    // // - Add raycast from player to click location
+    // // - Save ant 
+    void setTargetAnt() {
+        // Ray ray = Camera.main.ScreenPointToRay(clickPosition);
+        float zOffset = Camera.main.transform.position.z;
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -zOffset)), -Vector2.zero);
+        
 
-            if (Physics.Raycast(ray, out hit));
-            {
-                agent.SetDestination(hit.point);
-            }*/
+        if (hit) {
+            if (hit.collider.name.Contains("Ant")) {
+                targetAnt = hit.transform.gameObject;
+                print(targetAnt.name);
+
+                if (targetAnt.GetComponent<Ant>() != null)
+                {
+                    Ant clickedAnt = targetAnt.GetComponent<Ant>();
+                    clickedAnt.stayStill = true;
+                    Coroutine = stopAnt(clickedAnt);
+                    StartCoroutine(Coroutine); 
+                }
+                
+            }
+            else {
+                targetAnt = null;
+            }
+        }
+    }
+
+    IEnumerator stopAnt(Ant clickedAnt) {
+        yield return new WaitForSeconds(10f);
+        Debug.Log("Should be stopping");
+        float storedspeed = speed;
+        speed = 0;
+        interactWithAnt();
+        speed = storedspeed;
+        clickedAnt.stayStill = false;
+    }
+
+    
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject == targetAnt) {
+            float storedspeed = speed;
+            speed = 0;
+            interactWithAnt();
+            speed = storedspeed;
+        }
+    }
+
+    void interactWithAnt() {
+        canvas.enabled = !canvas.enabled;
+    }
 }
 
 

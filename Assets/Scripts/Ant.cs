@@ -20,7 +20,7 @@ public class Ant : MonoBehaviour
 
 	State currentState;
 
-	Vector2 currentVelocity;
+	public Vector2 currentVelocity;
 	Vector2 collisionAvoidForce;
 
 	float nextRandomSteerTime;
@@ -59,6 +59,8 @@ public class Ant : MonoBehaviour
 
 	float leftHomeTime;
 	float leftFoodTime;
+	public bool stayStill = false;
+
 
 	// Mechanics state 
 	public event System.Action<Ant> politicalAffiliationChange;
@@ -161,22 +163,28 @@ public class Ant : MonoBehaviour
 		Vector2 desiredVelocity = steerForce.normalized * settings.maxSpeed;
 		SteerTowards(desiredVelocity);
 
-		currentForwardDir = currentVelocity.normalized;
-		float moveDst = currentVelocity.magnitude * Time.deltaTime;
-		Vector2 desiredPos = currentPosition + currentVelocity * Time.deltaTime;
-
-		RaycastHit2D hit = Physics2D.Raycast(currentPosition, currentForwardDir, Mathf.Max(settings.collisionRadius, moveDst), collisionMask);
-		if (hit)
-		{
-			if (!turningAround)
-			{
-				StartTurnAround(Vector2.Reflect(currentForwardDir, hit.normal), 2);
-			}
-			desiredPos = hit.point - currentForwardDir * settings.collisionRadius;
+		if (stayStill) {
+			currentVelocity = new Vector2(0, 0);
 		}
+		else {
+			currentForwardDir = currentVelocity.normalized;
+			float moveDst = currentVelocity.magnitude * Time.deltaTime;
+			Vector2 desiredPos = currentPosition + currentVelocity * Time.deltaTime;
+			
 
-		currentPosition = desiredPos;
-		transform.SetPositionAndRotation(new Vector3(currentPosition.x, currentPosition.y, -0.1f), Quaternion.FromToRotation(Vector3.right, currentForwardDir));
+			RaycastHit2D hit = Physics2D.Raycast(currentPosition, currentForwardDir, Mathf.Max(settings.collisionRadius, moveDst), collisionMask);
+			if (hit)
+			{
+				if (!turningAround)
+				{
+					StartTurnAround(Vector2.Reflect(currentForwardDir, hit.normal), 2);
+				}
+				desiredPos = hit.point - currentForwardDir * settings.collisionRadius;
+			}
+
+			currentPosition = desiredPos;
+			transform.SetPositionAndRotation(new Vector3(currentPosition.x, currentPosition.y, -0.1f), Quaternion.FromToRotation(Vector3.right, currentForwardDir));
+		}
 	}
 
 	void HandleCollisionSteering()
