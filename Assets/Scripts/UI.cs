@@ -17,17 +17,17 @@ public class UI : MonoBehaviour
     // Array of random replies
     public string[] replyTexts;
     
-    [Header("Response Windows")]
+    [Header("Response Texts Windows")]
     public TextMeshProUGUI responseWindow1Text;
     public TextMeshProUGUI responseWindow2Text;
     public TextMeshProUGUI responseWindow3Text;
 
-    [Header("Response Windows")]
+    [Header("Buttons")]
     public Button button1;
     public Button button2;
     public Button button3;
 
-    [Header("Response Windows")]
+    [Header("Annt Description")]
 
     public TextMeshProUGUI antProfileText;
 
@@ -213,27 +213,83 @@ public class UI : MonoBehaviour
 
     private void SetProfileText()
     {
-        Dictionary<string, string>[] antProfiles = new Dictionary<string, string>[]
+        // List of ant names and descriptions
+        List<string> antNames = new List<string>
         {
-            new Dictionary<string, string>
-            {
-                { "Name", "Hans" },
-                { "Loyalty", "2" },
-                { "Description", "Hans is a nice guy. He likes to work, but not for the queen!" }
-            },
-            new Dictionary<string, string>
-            {
-                { "Name", "Anna" },
-                { "Loyalty", "3" },
-                { "Description", "Anna is hardworking and dedicated to the hive." }
-            },
-            new Dictionary<string, string>
-            {
-                { "Name", "Bob" },
-                { "Loyalty", "1" },
-                { "Description", "Bob is a bit rebellious and questions the queen's decisions." }
-            },
+            "Atom",
+            "Scout",
+            "Ziggy",
+            "Sable",
+            "Glimmer",
+            "Snickers",
+            "Pippin",
+            "Whiskers",
+            "Niblet",
+            "Bubbles",
+            "Munchkin",
+            "Sprocket",
+            "Crispin",
+            "Sparkle",
+            "Tinker",
+            "Buzzy"
         };
+
+        List<string> antDescriptions = new List<string>
+        {
+            "A diligent worker ant who admires the queen's strategic brilliance.",
+            "Expert navigator and loyal subject. Praises the queen's leadership skills.",
+            "Loves to explore and appreciates the queen's adventurous spirit.",
+            "Master of camouflage. Respects the queen's ability to adapt to challenges.",
+            "Enjoys glittering in the sunlight. Thinks the queen is radiant too.",
+            "The ant with a sweet tooth. Credits the queen for finding the best food sources.",
+            "A quick and nimble ant. Regards the queen as a wise and just ruler.",
+            "Known for his grooming habits. Approves of the queen's cleanliness.",
+            "An ant with a taste for small delights. Finds the queen's decisions tasteful.",
+            "Always in high spirits. Appreciates the queen's positive influence.",
+            "Small but mighty. Sees the queen as a powerful figure in the colony.",
+            "The mechanical genius ant. Respects the queen's organizational skills.",
+            "A fearless warrior ant. Admires the queen's courage in times of danger.",
+            "Shiny and vibrant. Believes the queen adds a sparkle to the colony.",
+            "The ant with a knack for fixing things. Believes in the Queen's abilities.",
+            "Constantly on the move. Believes the queen's tireless work ethic."
+        };
+
+        List<string> antLoyalties = new List<string>
+        {
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+        };
+
+        // Generate antProfiles array with random loyalty values
+        Dictionary<string, string>[] antProfiles = new Dictionary<string, string>[antNames.Count];
+
+        for (int i = 0; i < antNames.Count; i++)
+        {
+            int randomLoyalty = Random.Range(1, 4); // Random loyalty value between 1 and 3
+
+            antProfiles[i] = new Dictionary<string, string>
+            {
+                { "Name", antNames[i] },
+                { "Loyalty", antLoyalties[i] },
+                { "Description", antDescriptions[i] }
+            };
+        }
+
+        
 
         // Set the randomly chosen greeting text
         int profileCount = antProfiles.Length;
@@ -254,7 +310,7 @@ public class UI : MonoBehaviour
         {
             Debug.LogError("No ant profiles available.");
         }
-        
+
     }
 
 
