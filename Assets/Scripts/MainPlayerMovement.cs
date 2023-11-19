@@ -47,7 +47,7 @@ public class MainPlayerMovement : MonoBehaviour
         RotateTowardsMouse(mousePosition);
         MoveToPosition(mousePosition, speed);
         UpdateCameraPosition();
-        HandlePheromonePlacement();
+        // HandlePheromonePlacement();
         
        
     }
