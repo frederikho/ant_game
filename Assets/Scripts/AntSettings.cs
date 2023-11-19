@@ -23,6 +23,7 @@ public class AntSettings : ScriptableObject
 	public float perceptionRadius = 2.5f;
 	public bool useHomeMarkers = true;
 	public bool useFoodMarkers = true;
+	public bool useFollowMarkers = true;
 
 	[Header("Sensing")]
 	public float sensorSize = 0.75f;

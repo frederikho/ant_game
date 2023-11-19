@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ant : MonoBehaviour
 {
-	public enum State { SearchingForFood, ReturningHome }
+	public enum State { SearchingForFood, ReturningHome, Following}
 
 	public AntSettings settings;
 	public Transform head;
@@ -60,8 +60,20 @@ public class Ant : MonoBehaviour
 	float leftHomeTime;
 	float leftFoodTime;
 
-	// Mechanics state
-	int politicalAffiliation;	// range [-3, 3]
+	// Mechanics state 
+	public event System.Action<Ant> politicalAffiliationChange;
+	public int politicalAffiliation;
+	public int PoliticalAffiliation{
+		get{return politicalAffiliation;}
+		set{
+			if (value != politicalAffiliation) {
+				politicalAffiliation = value;
+			}
+			politicalAffiliationChange?.Invoke(this);
+			
+		}
+	}
+
 
 	public void SetColony(AntColony colony)
 	{
@@ -117,7 +129,19 @@ public class Ant : MonoBehaviour
 	void setSprite()
 	{
 		this.GetComponentInChildren<SpriteRenderer>().sprite = 
-			spriteArray[this.politicalAffiliation + 3];
+			spriteArray[politicalAffiliation + 3];		
+	}
+
+	void updatePoliticalAffiliation() {
+		if (politicalAffiliation < 0) {
+				tag = "red";
+		}
+		else if (politicalAffiliation > 0) {
+			tag = "blue";
+		}
+		else {
+			tag = "grey";
+		}
 	}
 
 
@@ -333,6 +357,11 @@ public class Ant : MonoBehaviour
 					numPheromones = colony.foodMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
 				}
 				if (currentState == State.ReturningHome && settings.useHomeMarkers)
+				{
+					numPheromones = colony.homeMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
+				}
+
+				if (currentState == State.Following && settings.useFollowMarkers)
 				{
 					numPheromones = colony.homeMarkers.GetAllInCircle(pheromoneEntries, sensors[i]);
 				}
