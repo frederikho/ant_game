@@ -19,6 +19,13 @@ public class SceneLoader2 : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene("Ants");
+		StartCoroutine("DelaySceneChange");
+        
     }
+	
+	public IEnumerator DelaySceneChange()
+	{
+		yield return new WaitForSeconds(3);
+		SceneManager.LoadScene("Ants");
+	}
 }

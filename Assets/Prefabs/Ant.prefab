@@ -66,13 +66,13 @@ MonoBehaviour:
   antennaRight: {fileID: 975148653644356107}
   perceptionCentre: {fileID: 8820977480597983122}
   spriteArray:
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
-  - {fileID: 21300000, guid: 0d60f24fb7f2cb848937b6c3108f9caa, type: 3}
+  - {fileID: 21300000, guid: 6f140104a6389a9418804701d8587765, type: 3}
+  - {fileID: 21300000, guid: 6f140104a6389a9418804701d8587765, type: 3}
+  - {fileID: 21300000, guid: 6f140104a6389a9418804701d8587765, type: 3}
+  - {fileID: 21300000, guid: 5c15120a4ea57633896c4bff80a851ae, type: 3}
+  - {fileID: 21300000, guid: 6f140104a6389a9418804701d8587765, type: 3}
+  - {fileID: 21300000, guid: 21f17caefe2b246859d2775710fecc27, type: 3}
+  - {fileID: 21300000, guid: 21f17caefe2b246859d2775710fecc27, type: 3}
   politicalAffiliation: 0
 --- !u!70 &8064958711884354850
 CapsuleCollider2D:
@@ -114,14 +114,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684692067367925888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.08796853, y: 0.08796853, z: 0.08796853}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 402160823636076157}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &1905395803430933141
 SpriteRenderer:
   m_ObjectHideFlags: 0
