@@ -10,22 +10,26 @@ public class UI : MonoBehaviour
     public Canvas canvas;
 
     public Canvas revolutionCanvas;
-    public TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI antGreetingText;
 
     private string[] greetingTexts;
 
     // Array of random replies
     public string[] replyTexts;
     
-    [Header("Response Windows")]
+    [Header("Response Texts Windows")]
     public TextMeshProUGUI responseWindow1Text;
     public TextMeshProUGUI responseWindow2Text;
     public TextMeshProUGUI responseWindow3Text;
 
-    [Header("Response Windows")]
+    [Header("Buttons")]
     public Button button1;
     public Button button2;
     public Button button3;
+
+    [Header("Annt Description")]
+
+    public TextMeshProUGUI antProfileText;
 
     [Header("Other")]
 
@@ -128,6 +132,9 @@ public class UI : MonoBehaviour
         "I don't have time for this."
     };
 
+
+
+
     private void Start()
     {
         // Disable the canvas at the start
@@ -151,8 +158,6 @@ public class UI : MonoBehaviour
         // Check for the 'm' key press
         if (Input.GetKeyDown(KeyCode.M))
         {
-            
-
             // Toggle the canvas
             canvas.enabled = !canvas.enabled;
             revolutionCanvas.enabled = !revolutionCanvas.enabled;
@@ -166,7 +171,9 @@ public class UI : MonoBehaviour
                 AudioClip selectedClip = (randomIndex == 0) ? antMeetingSoundclip1 : antMeetingSoundclip2;
                 audioSource.clip = selectedClip;
                 audioSource.Play();
+
                 SetRandomGreeting();
+                SetProfileText();
 
                 // Choose a random reply for each Response Window
                 replyTexts = pro_queen_reply.Concat(contra_queen_reply).ToArray();
@@ -201,8 +208,111 @@ public class UI : MonoBehaviour
         int randomIndex = Random.Range(0, greetingTexts.Length);
 
         // Set the randomly chosen greeting text
-        textMeshPro.text = greetingTexts[randomIndex];
+        antGreetingText.text = greetingTexts[randomIndex];
     }
+
+    private void SetProfileText()
+    {
+        // List of ant names and descriptions
+        List<string> antNames = new List<string>
+        {
+            "Atom",
+            "Scout",
+            "Ziggy",
+            "Sable",
+            "Glimmer",
+            "Snickers",
+            "Pippin",
+            "Whiskers",
+            "Niblet",
+            "Bubbles",
+            "Munchkin",
+            "Sprocket",
+            "Crispin",
+            "Sparkle",
+            "Tinker",
+            "Buzzy"
+        };
+
+        List<string> antDescriptions = new List<string>
+        {
+            "A diligent worker ant who admires the queen's strategic brilliance.",
+            "Expert navigator and loyal subject. Praises the queen's leadership skills.",
+            "Loves to explore and appreciates the queen's adventurous spirit.",
+            "Master of camouflage. Respects the queen's ability to adapt to challenges.",
+            "Enjoys glittering in the sunlight. Thinks the queen is radiant too.",
+            "The ant with a sweet tooth. Credits the queen for finding the best food sources.",
+            "A quick and nimble ant. Regards the queen as a wise and just ruler.",
+            "Known for his grooming habits. Approves of the queen's cleanliness.",
+            "An ant with a taste for small delights. Finds the queen's decisions tasteful.",
+            "Always in high spirits. Appreciates the queen's positive influence.",
+            "Small but mighty. Sees the queen as a powerful figure in the colony.",
+            "The mechanical genius ant. Respects the queen's organizational skills.",
+            "A fearless warrior ant. Admires the queen's courage in times of danger.",
+            "Shiny and vibrant. Believes the queen adds a sparkle to the colony.",
+            "The ant with a knack for fixing things. Believes in the Queen's abilities.",
+            "Constantly on the move. Believes the queen's tireless work ethic."
+        };
+
+        List<string> antLoyalties = new List<string>
+        {
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "1",
+        };
+
+        // Generate antProfiles array with random loyalty values
+        Dictionary<string, string>[] antProfiles = new Dictionary<string, string>[antNames.Count];
+
+        for (int i = 0; i < antNames.Count; i++)
+        {
+            int randomLoyalty = Random.Range(1, 4); // Random loyalty value between 1 and 3
+
+            antProfiles[i] = new Dictionary<string, string>
+            {
+                { "Name", antNames[i] },
+                { "Loyalty", antLoyalties[i] },
+                { "Description", antDescriptions[i] }
+            };
+        }
+
+        
+
+        // Set the randomly chosen greeting text
+        int profileCount = antProfiles.Length;
+
+        // Check if there are any ant profiles
+        if (profileCount > 0)
+        {
+            // Generate a random index
+            int randomIndex = Random.Range(0, profileCount);
+
+            // Retrieve the random ant profile
+            Dictionary<string, string> randomAntProfile = antProfiles[randomIndex];
+
+            // Generate the profile text and set it to antProfileText
+            antProfileText.text = $"Name: {randomAntProfile["Name"]}\nLoyalty: +{randomAntProfile["Loyalty"]}\nDescription: {randomAntProfile["Description"]}";
+        }
+        else
+        {
+            Debug.LogError("No ant profiles available.");
+        }
+
+    }
+
 
     private void SetRandomReply(TextMeshProUGUI responseText)
     {

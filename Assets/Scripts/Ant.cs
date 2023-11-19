@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Ant : MonoBehaviour
@@ -10,6 +11,7 @@ public class Ant : MonoBehaviour
 	public Transform head;
 	public LayerMask foodMask;
 	public LayerMask homeMask;
+	public LayerMask followMask;
 	public LayerMask collisionMask;
 
 
@@ -60,8 +62,8 @@ public class Ant : MonoBehaviour
 
 	float leftHomeTime;
 	float leftFoodTime;
+	float leftFollowTime;
 	public bool stayStill = false;
-
 
 	// Mechanics state 
 	public event System.Action<Ant> politicalAffiliationChange;
@@ -124,6 +126,10 @@ public class Ant : MonoBehaviour
 		{
 			HandleReturnHome();
 		}
+		else if (currentState == State.Following)
+		{
+			HandleFollowing();
+		}
 
 		HandleCollisionSteering();
 		HandleMovement();
@@ -138,12 +144,15 @@ public class Ant : MonoBehaviour
 	void updatePoliticalAffiliation() {
 		if (politicalAffiliation < 0) {
 				tag = "red";
+				currentState = State.ReturningHome;
 		}
 		else if (politicalAffiliation > 0) {
 			tag = "blue";
+			currentState = State.Following;
 		}
 		else {
 			tag = "grey";
+			currentState = State.SearchingForFood;
 		}
 	}
 
@@ -255,6 +264,11 @@ public class Ant : MonoBehaviour
 
 	}
 
+	void HandleFollowing()
+	{
+		HandlePheromoneSteering();
+	}
+
 	void StartTurnAround(Vector2 returnDir, float randomStrength = 0.2f)
 	{
 		turningAround = true;
@@ -331,6 +345,13 @@ public class Ant : MonoBehaviour
 			else if (currentState == State.ReturningHome && settings.useFoodMarkers && (Time.time - leftFoodTime) < settings.pheromoneRunOutTime)
 			{
 				float t = 1 - (Time.time - leftFoodTime) / settings.pheromoneRunOutTime;
+				t = Mathf.Lerp(0.5f, 1, t);
+				colony.foodMarkers.Add(transform.position, t);
+				lastPheromonePos = transform.position + (Vector3)Random.insideUnitCircle * settings.dstBetweenMarkers * 0.2f;
+			}
+			else if (currentState == State.Following && settings.useFollowMarkers && (Time.time - leftFollowTime) < settings.pheromoneRunOutTime)
+			{
+				float t = 1 - (Time.time - leftFollowTime) / settings.pheromoneRunOutTime;
 				t = Mathf.Lerp(0.5f, 1, t);
 				colony.foodMarkers.Add(transform.position, t);
 				lastPheromonePos = transform.position + (Vector3)Random.insideUnitCircle * settings.dstBetweenMarkers * 0.2f;
