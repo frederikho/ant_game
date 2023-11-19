@@ -10,7 +10,7 @@ public class UI : MonoBehaviour
     public Canvas canvas;
 
     public Canvas revolutionCanvas;
-    public TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI antGreetingText;
 
     private string[] greetingTexts;
 
@@ -26,6 +26,10 @@ public class UI : MonoBehaviour
     public Button button1;
     public Button button2;
     public Button button3;
+
+    [Header("Response Windows")]
+
+    public TextMeshProUGUI antProfileText;
 
     [Header("Other")]
 
@@ -128,6 +132,9 @@ public class UI : MonoBehaviour
         "I don't have time for this."
     };
 
+
+
+
     private void Start()
     {
         // Disable the canvas at the start
@@ -151,8 +158,6 @@ public class UI : MonoBehaviour
         // Check for the 'm' key press
         if (Input.GetKeyDown(KeyCode.M))
         {
-            
-
             // Toggle the canvas
             canvas.enabled = !canvas.enabled;
             revolutionCanvas.enabled = !revolutionCanvas.enabled;
@@ -166,7 +171,9 @@ public class UI : MonoBehaviour
                 AudioClip selectedClip = (randomIndex == 0) ? antMeetingSoundclip1 : antMeetingSoundclip2;
                 audioSource.clip = selectedClip;
                 audioSource.Play();
+
                 SetRandomGreeting();
+                SetProfileText();
 
                 // Choose a random reply for each Response Window
                 replyTexts = pro_queen_reply.Concat(contra_queen_reply).ToArray();
@@ -201,8 +208,55 @@ public class UI : MonoBehaviour
         int randomIndex = Random.Range(0, greetingTexts.Length);
 
         // Set the randomly chosen greeting text
-        textMeshPro.text = greetingTexts[randomIndex];
+        antGreetingText.text = greetingTexts[randomIndex];
     }
+
+    private void SetProfileText()
+    {
+        Dictionary<string, string>[] antProfiles = new Dictionary<string, string>[]
+        {
+            new Dictionary<string, string>
+            {
+                { "Name", "Hans" },
+                { "Loyalty", "2" },
+                { "Description", "Hans is a nice guy. He likes to work, but not for the queen!" }
+            },
+            new Dictionary<string, string>
+            {
+                { "Name", "Anna" },
+                { "Loyalty", "3" },
+                { "Description", "Anna is hardworking and dedicated to the hive." }
+            },
+            new Dictionary<string, string>
+            {
+                { "Name", "Bob" },
+                { "Loyalty", "1" },
+                { "Description", "Bob is a bit rebellious and questions the queen's decisions." }
+            },
+        };
+
+        // Set the randomly chosen greeting text
+        int profileCount = antProfiles.Length;
+
+        // Check if there are any ant profiles
+        if (profileCount > 0)
+        {
+            // Generate a random index
+            int randomIndex = Random.Range(0, profileCount);
+
+            // Retrieve the random ant profile
+            Dictionary<string, string> randomAntProfile = antProfiles[randomIndex];
+
+            // Generate the profile text and set it to antProfileText
+            antProfileText.text = $"Name: {randomAntProfile["Name"]}\nLoyalty: +{randomAntProfile["Loyalty"]}\nDescription: {randomAntProfile["Description"]}";
+        }
+        else
+        {
+            Debug.LogError("No ant profiles available.");
+        }
+        
+    }
+
 
     private void SetRandomReply(TextMeshProUGUI responseText)
     {
