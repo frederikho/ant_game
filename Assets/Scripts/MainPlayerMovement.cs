@@ -21,7 +21,7 @@ public class MainPlayerMovement : MonoBehaviour
     PerceptionMap.Entry[] pheromoneEntries;
     public enum State {Following}
     Vector2 lastPheromonePos;
-    AntColony colony;
+    public AntColony colony;
     float leftFollowingTime ;
 
     private void Start()
@@ -47,7 +47,7 @@ public class MainPlayerMovement : MonoBehaviour
         RotateTowardsMouse(mousePosition);
         MoveToPosition(mousePosition, speed);
         UpdateCameraPosition();
-        // HandlePheromonePlacement();
+        HandlePheromonePlacement();
         
        
     }
@@ -99,10 +99,10 @@ public class MainPlayerMovement : MonoBehaviour
         
     void HandlePheromonePlacement()
     {
-            float t = 1 - (Time.time - leftFollowingTime) / settings.pheromoneRunOutTime;
+            float t = 1 - 10*(Time.time - leftFollowingTime) / settings.pheromoneRunOutTime;
             t = Mathf.Lerp(0.5f, 1, t);
             colony.followMarkers.Add(transform.position, t);
-            lastPheromonePos = transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * settings.dstBetweenMarkers * 0.2f;
+            lastPheromonePos = transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * settings.dstBetweenMarkers * 2f;
             Debug.Log(lastPheromonePos );
     }
 

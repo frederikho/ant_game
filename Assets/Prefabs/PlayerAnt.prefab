@@ -237,6 +237,7 @@ MonoBehaviour:
   rotationSpeed: 360
   target: {fileID: 0}
   settings: {fileID: 0}
+  colony: {fileID: 0}
 --- !u!195 &2220735779239738971
 NavMeshAgent:
   m_ObjectHideFlags: 0
