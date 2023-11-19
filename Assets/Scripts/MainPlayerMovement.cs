@@ -126,6 +126,10 @@ public class MainPlayerMovement : MonoBehaviour
         float zOffset = Camera.main.transform.position.z;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -zOffset)), -Vector2.zero);
         
+        if (targetAnt) {
+            targetAnt.GetComponent<Ant>().stayStill = false;
+            targetAnt.GetComponent<Ant>().currentVelocity = targetAnt.GetComponent<Ant>().storedVelocity;
+        }
 
         if (hit) {
             if (hit.collider.name.Contains("Ant")) {
@@ -136,20 +140,19 @@ public class MainPlayerMovement : MonoBehaviour
                 {
                     Ant clickedAnt = targetAnt.GetComponent<Ant>();
                     clickedAnt.stayStill = true;
-                    Coroutine = stopAnt(clickedAnt);
-                    StartCoroutine(Coroutine); 
                 }
                 
             }
             else {
                 targetAnt = null;
             }
+        } else {
+            targetAnt = null;
         }
     }
 
     IEnumerator stopAnt(Ant clickedAnt) {
         yield return new WaitForSeconds(10f);
-        Debug.Log("Should be stopping");
         float storedspeed = speed;
         speed = 0;
         interactWithAnt();

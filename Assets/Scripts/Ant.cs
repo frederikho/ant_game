@@ -21,6 +21,7 @@ public class Ant : MonoBehaviour
 	State currentState;
 
 	public Vector2 currentVelocity;
+	public Vector2 storedVelocity;
 	Vector2 collisionAvoidForce;
 
 	float nextRandomSteerTime;
@@ -90,7 +91,7 @@ public class Ant : MonoBehaviour
 		currentForwardDir = transform.right;
 		currentPosition = transform.position;
 		currentVelocity = currentForwardDir * settings.maxSpeed;
-
+		
 		foodColliders = new Collider2D[1];
 		homePos = transform.position;
 
@@ -164,6 +165,7 @@ public class Ant : MonoBehaviour
 		SteerTowards(desiredVelocity);
 
 		if (stayStill) {
+			storedVelocity = currentVelocity;
 			currentVelocity = new Vector2(0, 0);
 		}
 		else {
