@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ants.unity
     guid: 6b413ac18c2f94f33bb2e94085816eb2
+  - enabled: 1
+    path: Assets/Scenes/The Ant.unity
+    guid: 25dc1f963b9164678b3de3a7d32918ce
   m_configObjects: {}
